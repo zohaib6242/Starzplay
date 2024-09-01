@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.zohaib.starzplay.databinding.ActivityMainBinding
 import com.zohaib.starzplay.ui.home.adapter.CarouselItemAdapter
-import com.zohaib.starzplay.ui.player.showToast
+import com.zohaib.starzplay.utils.showToast
 import com.zohaib.starzplay.utils.Helper
 import com.zohaib.starzplayllib.data.api.RetrofitInstance
 import com.zohaib.starzplayllib.data.model.CarouselItem

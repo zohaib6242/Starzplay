@@ -1,4 +1,4 @@
-package com.zohaib.starzplay.ui.player
+package com.zohaib.starzplay.utils
 
 import android.content.Context
 import android.widget.Toast
