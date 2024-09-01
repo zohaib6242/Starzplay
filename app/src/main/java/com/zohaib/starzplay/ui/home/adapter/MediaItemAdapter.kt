@@ -33,8 +33,7 @@ class MediaItemAdapter(
         holder.mediaImageView.setOnClickListener {
             val context = holder.mediaImageView.context
             val intent = Intent(context, DetailScreenActivity::class.java).apply {
-                // Passing the Serializable object as an extra
-                putExtra("mediaItem", mediaItem) // mediaItem is an instance of MediaItem
+                putExtra("mediaItem", mediaItem)
             }
             holder.mediaImageView.context.startActivity(intent)
         }
