@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.zohaib.starzplay.databinding.ActivityMainBinding
 import com.zohaib.starzplay.ui.home.adapter.CarouselItemAdapter
+import com.zohaib.starzplay.ui.player.showToast
+import com.zohaib.starzplay.utils.Helper
 import com.zohaib.starzplayllib.data.api.RetrofitInstance
 import com.zohaib.starzplayllib.data.model.CarouselItem
 import com.zohaib.starzplayllib.data.repository.Repository
@@ -46,11 +48,21 @@ class MainScreenActivity : AppCompatActivity() {
     }
 
     private fun performMoviesSearch(query: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            val data = repository.search(query)
-            withContext(Dispatchers.Main) {
-                updateCarouselItemAdapterData(data)
+        if (Helper.isInternetAvailable(this)) {
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    val data = repository.search(query)
+                    withContext(Dispatchers.Main) {
+                        updateCarouselItemAdapterData(data)
+                    }
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        showToast("Error occurred: ${e.message}")
+                    }
+                }
             }
+        } else {
+            showToast("No internet connection available.")
         }
     }
 
